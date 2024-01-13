@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "child_process": "1.0.2",
+    "mas": "^0.0.3",
+    "node-schedule": "^2.1.1",
+    "screenshot-desktop": "^1.14.0"
+  },
+  "name": "electronjbt",
+  "version": "1.0.3",
+  "main": "index.js",
+  "scripts": {
+    "buildPress86": "gcc -o src/program/event_press_x86_64 ../c-program/event_press.c",
+    "buildPress64": "gcc -arch arm64 -o src/program/event_press_arm64 ../c-program/event_press.c",
+    "build:all": "yarn buildPress86 && yarn buildPress64 && lipo -create src/program/event_press_x86_64 src/program/event_press_arm64 -output event_press",
+    "build:screenshot": "gcc -o src/program/event_screenshot ../c-program/event_screenshot.c -framework ApplicationServices",
+    "build:events": "yarn build:press && yarn build:screenshot"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
